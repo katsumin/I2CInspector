@@ -1,0 +1,684 @@
+Archive member included because of file (symbol)
+
+/home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+                              ./src/cr_startup_lpc8xx.o (SystemInit)
+/home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                              ./src/I2CInspector.o (GPIOInit)
+/home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                              ./src/I2CInspector.o (I2C_MstInit)
+/home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                              ./src/I2CInspector.o (UARTInit)
+/opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+                              ./src/cr_startup_lpc8xx.o (__main)
+/opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+                              /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o) (__aeabi_uidiv)
+/opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+                              /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o) (__aeabi_idiv0)
+/opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+                              ./src/I2CInspector.o (__gnu_thumb1_case_uqi)
+
+Allocating common symbols
+Common symbol       size              file
+
+I2CStatus           0x4               /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+I2CMonBuffer        0x4               ./src/I2CInspector.o
+UARTRxBuffer        0x20              /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+uart_data           0x200             ./src/I2CInspector.o
+cmd_data            0x10              ./src/I2CInspector.o
+I2CSlaveRXBuffer    0x1               ./src/I2CInspector.o
+UARTStatus          0x4               /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+data                0x1               ./src/I2CInspector.o
+UARTTxBuffer        0x20              /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+I2CSlaveTXBuffer    0x1               ./src/I2CInspector.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 ./src/I2CInspector.o
+ .data          0x00000000        0x0 ./src/I2CInspector.o
+ .bss           0x00000000        0x0 ./src/I2CInspector.o
+ .text.uart_puts
+                0x00000000       0x14 ./src/I2CInspector.o
+ .rodata.kDirOutput
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kEvent2
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kEvent3
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kDirInput
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kEvent4
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kBitSda
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kPort0
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kBitLed
+                0x00000000        0x1 ./src/I2CInspector.o
+ .rodata.kBitScl
+                0x00000000        0x1 ./src/I2CInspector.o
+ .text          0x00000000        0x0 ./src/cr_startup_lpc8xx.o
+ .data          0x00000000        0x0 ./src/cr_startup_lpc8xx.o
+ .bss           0x00000000        0x0 ./src/cr_startup_lpc8xx.o
+ .text          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .data          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .bss           0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .text.SystemCoreClockUpdate
+                0x00000000       0xa0 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .rodata.CSWTCH.6
+                0x00000000       0x3c /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .text          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .data          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss           0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.PIN3_IRQHandler
+                0x00000000        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOSetPinInterrupt
+                0x00000000       0x6c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPinIntEnable
+                0x00000000       0x28 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPinIntDisable
+                0x00000000       0x28 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPinIntStatus
+                0x00000000       0x18 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPinIntClear
+                0x00000000       0x14 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOSetBitValue
+                0x00000000       0x18 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPatternMatchInit
+                0x00000000       0x10 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOSetPatternMatchInput
+                0x00000000       0x10 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOSetPatternMatchSlice
+                0x00000000       0x5c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text.GPIOPatternMatchEnable
+                0x00000000       0x2c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint1_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint0_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint0_edge_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint0_level_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint1_level_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .bss.gint1_edge_counter
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .text          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .data          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss           0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text.I2C_SlvInit
+                0x00000000       0x60 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text.I2C_MstSendRcv
+                0x00000000       0xec /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text.I2C_SlaveSendData
+                0x00000000       0x34 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text.I2C_SlaveReceiveData
+                0x00000000       0x34 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text.I2C_SlaveReceiveSend
+                0x00000000       0x64 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.I2CSlvSelectedCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.SlaveAddr
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.I2CMonOverrunCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.I2CEventTimeoutCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.I2CSCLTimeoutCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .bss.I2CMonIdleCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .text          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .data          0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss           0x00000000        0x0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .text.USARTInit
+                0x00000000       0x90 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss.UARTBlockTransmitted
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss.UARTTxCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss.ParityErrorCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss.RxErrorCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .bss.TxErrorCount
+                0x00000000        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .text          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .data          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .bss           0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .text          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+ .data          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+ .bss           0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+ .text          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+ .data          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+ .bss           0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+ .text          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .data          0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .bss           0x00000000        0x0 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_sqi
+                0x00000000       0x10 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_shi
+                0x00000000       0x10 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_uhi
+                0x00000000       0x10 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+ .text.__gnu_thumb1_case_si
+                0x00000000       0x18 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+MFlash4          0x00000000         0x00001000         xr
+RamLoc1          0x10000000         0x00000400         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./src/I2CInspector.o
+LOAD ./src/cr_startup_lpc8xx.o
+LOAD /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a
+LOAD /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a
+START GROUP
+LOAD /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a
+LOAD /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a
+END GROUP
+                0x00000000                __base_MFlash4 = 0x0
+                0x00000000                __base_Flash = 0x0
+                0x00001000                __top_MFlash4 = 0x1000
+                0x00001000                __top_Flash = 0x1000
+                0x10000000                __base_RamLoc1 = 0x10000000
+                0x10000000                __base_RAM = 0x10000000
+                0x10000400                __top_RamLoc1 = 0x10000400
+                0x10000400                __top_RAM = 0x10000400
+
+.text           0x00000000      0xee4
+ FILL mask 0xff
+                0x00000000                __vectors_start__ = ABSOLUTE (.)
+ *(.isr_vector)
+ .isr_vector    0x00000000       0xc0 ./src/cr_startup_lpc8xx.o
+                0x00000000                g_pfnVectors
+                0x000000c0                . = ALIGN (0x4)
+                0x000000c0                __section_table_start = .
+                0x000000c0                __data_section_table = .
+                0x000000c0        0x4 LONG 0xee4 LOADADDR (.data)
+                0x000000c4        0x4 LONG 0x10000000 ADDR (.data)
+                0x000000c8        0x4 LONG 0xc SIZEOF (.data)
+                0x000000cc                __data_section_table_end = .
+                0x000000cc                __bss_section_table = .
+                0x000000cc        0x4 LONG 0x1000000c ADDR (.bss)
+                0x000000d0        0x4 LONG 0x35c SIZEOF (.bss)
+                0x000000d4                __bss_section_table_end = .
+                0x000000d4                __section_table_end = .
+ *(.after_vectors*)
+ .after_vectors
+                0x000000d4       0x70 ./src/cr_startup_lpc8xx.o
+                0x000000d4                NMI_Handler
+                0x000000d6                HardFault_Handler
+                0x000000d8                SVC_Handler
+                0x000000da                PendSV_Handler
+                0x000000dc                SysTick_Handler
+                0x000000de                CMP_IRQHandler
+                0x000000de                WKT_IRQHandler
+                0x000000de                MRT_IRQHandler
+                0x000000de                SPI1_IRQHandler
+                0x000000de                IntDefaultHandler
+                0x000000de                PININT3_IRQHandler
+                0x000000de                BOD_IRQHandler
+                0x000000de                WDT_IRQHandler
+                0x000000de                SPI0_IRQHandler
+                0x000000e0                data_init
+                0x000000f2                bss_init
+                0x00000102                ResetISR
+ *(.text*)
+ .text.uart_putc
+                0x00000144       0x54 ./src/I2CInspector.o
+                0x00000144                uart_putc
+ .text.uart_putx
+                0x00000198       0x14 ./src/I2CInspector.o
+                0x00000198                uart_putx
+ .text.uart_putxx
+                0x000001ac       0x14 ./src/I2CInspector.o
+                0x000001ac                uart_putxx
+ .text.uart_write
+                0x000001c0       0x98 ./src/I2CInspector.o
+                0x000001c0                uart_write
+ .text.atoi     0x00000258       0x2a ./src/I2CInspector.o
+                0x00000258                atoi
+ *fill*         0x00000282        0x2 
+ .text.startup.main
+                0x00000284      0x128 ./src/I2CInspector.o
+                0x00000284                main
+ .text.logln    0x000003ac       0x28 ./src/I2CInspector.o
+                0x000003ac                logln
+ .text.SCT_IRQHandler
+                0x000003d4      0x19c ./src/I2CInspector.o
+                0x000003d4                SCT_IRQHandler
+ .text.UARTCustom_IRQHandler
+                0x00000570      0x148 ./src/I2CInspector.o
+                0x00000570                UARTCustom_IRQHandler
+ .text.SystemInit
+                0x000006b8       0x40 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+                0x000006b8                SystemInit
+ .text.PININT_Handler
+                0x000006f8       0xc8 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000006f8                PININT_Handler
+ .text.PININT0_IRQHandler
+                0x000007c0        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007c0                PININT0_IRQHandler
+ .text.PININT1_IRQHandler
+                0x000007ca        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007ca                PININT1_IRQHandler
+ .text.PININT2_IRQHandler
+                0x000007d4        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007d4                PININT2_IRQHandler
+ .text.PININT4_IRQHandler
+                0x000007de        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007de                PININT4_IRQHandler
+ .text.PININT5_IRQHandler
+                0x000007e8        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007e8                PININT5_IRQHandler
+ .text.PININT6_IRQHandler
+                0x000007f2        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007f2                PININT6_IRQHandler
+ .text.PININT7_IRQHandler
+                0x000007fc        0xa /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x000007fc                PININT7_IRQHandler
+ *fill*         0x00000806        0x2 
+ .text.GPIOInit
+                0x00000808       0x28 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x00000808                GPIOInit
+ .text.GPIOGetPinValue
+                0x00000830       0x2c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x00000830                GPIOGetPinValue
+ .text.GPIOSetDir
+                0x0000085c       0x24 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x0000085c                GPIOSetDir
+ .text.I2C_MasterStatus
+                0x00000880       0x40 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000880                I2C_MasterStatus
+ .text.I2C_SlaveStatus
+                0x000008c0       0x30 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x000008c0                I2C_SlaveStatus
+ .text.I2C_IRQHandler
+                0x000008f0      0x1a4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x000008f0                I2C_IRQHandler
+ .text.I2C_MstInit
+                0x00000a94       0x48 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000a94                I2C_MstInit
+ .text.I2C_CheckError
+                0x00000adc       0x3c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000adc                I2C_CheckError
+ .text.I2C_CheckIdle
+                0x00000b18       0x18 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000b18                I2C_CheckIdle
+ .text.I2C_MstSend
+                0x00000b30       0x7c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000b30                I2C_MstSend
+ .text.I2C_MstReceive
+                0x00000bac       0x78 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x00000bac                I2C_MstReceive
+ .text.UART_Handler
+                0x00000c24       0x80 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000c24                UART_Handler
+ .text.UART0_IRQHandler
+                0x00000ca4       0x10 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000ca4                UART0_IRQHandler
+ .text.UART1_IRQHandler
+                0x00000cb4       0x10 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000cb4                UART1_IRQHandler
+ .text.UART2_IRQHandler
+                0x00000cc4       0x10 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000cc4                UART2_IRQHandler
+ .text.UARTClock_Init
+                0x00000cd4       0x78 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000cd4                UARTClock_Init
+ .text.UARTInit
+                0x00000d4c       0xb0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000d4c                UARTInit
+ .text.UARTSend
+                0x00000dfc       0x28 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x00000dfc                UARTSend
+ .text.__weak_main
+                0x00000e24        0x8 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+                0x00000e24                __main
+                0x00000e24                __weak_main
+ .text.__aeabi_division_idivmod
+                0x00000e2c       0x78 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+                0x00000e2c                __aeabi_idiv
+                0x00000e2c                __aeabi_idivmod
+                0x00000e32                __aeabi_uidiv
+                0x00000e32                __aeabi_uidivmod
+ .text.__aeabi_division_idiv0
+                0x00000ea4        0x2 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+                0x00000ea4                __aeabi_idiv0
+ .text.__gnu_thumb1_case_uqi
+                0x00000ea6       0x10 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+                0x00000ea6                __gnu_thumb1_case_uqi
+ *(.rodata .rodata.* .constdata .constdata.*)
+ .rodata.kMsgError
+                0x00000eb6       0x19 ./src/I2CInspector.o
+                0x00000eb6                kMsgError
+ .rodata.kMsgReady
+                0x00000ecf       0x14 ./src/I2CInspector.o
+                0x00000ecf                kMsgReady
+                0x00000ee4                . = ALIGN (0x4)
+ *fill*         0x00000ee3        0x1 ff
+
+.glue_7         0x00000ee4        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x00000ee4        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x00000ee4        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x00000ee4        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00000ee4        0x0
+ .iplt          0x00000000        0x0 ./src/I2CInspector.o
+
+.rel.dyn        0x00000ee4        0x0
+ .rel.iplt      0x00000000        0x0 ./src/I2CInspector.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x00000ee4                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x00000ee4                __exidx_end = .
+                0x00000ee4                _etext = .
+
+.mtb_buffer_default
+ *(.mtb*)
+
+.uninit_RESERVED
+                0x10000000        0x0
+ *(.bss.$RESERVED*)
+                0x10000000                . = ALIGN (0x4)
+                0x10000000                _end_uninit_RESERVED = .
+
+.data           0x10000000        0xc load address 0x00000ee4
+ FILL mask 0xff
+                0x10000000                _data = .
+ *(vtable)
+ *(.ramfunc*)
+ *(.data*)
+ .data.cmd_state
+                0x10000000        0x1 ./src/I2CInspector.o
+                0x10000000                cmd_state
+ *fill*         0x10000001        0x3 
+ .data.SystemCoreClock
+                0x10000004        0x4 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+                0x10000004                SystemCoreClock
+ .data.UARTTxEmpty
+                0x10000008        0x1 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x10000008                UARTTxEmpty
+                0x1000000c                . = ALIGN (0x4)
+ *fill*         0x10000009        0x3 ff
+                0x1000000c                _edata = .
+
+.igot.plt       0x1000000c        0x0 load address 0x00000ef0
+ .igot.plt      0x00000000        0x0 ./src/I2CInspector.o
+
+.bss            0x1000000c      0x35c load address 0x00000ef0
+                0x1000000c                _bss = .
+ *(.bss*)
+ .bss.count     0x1000000c        0x1 ./src/I2CInspector.o
+                0x1000000c                count
+ .bss.rw        0x1000000d        0x1 ./src/I2CInspector.o
+                0x1000000d                rw
+ .bss.address   0x1000000e        0x2 ./src/I2CInspector.o
+                0x1000000e                address
+ .bss.cmd_data_size
+                0x10000010        0x1 ./src/I2CInspector.o
+                0x10000010                cmd_data_size
+ .bss.cmd_address
+                0x10000011        0x1 ./src/I2CInspector.o
+                0x10000011                cmd_address
+ .bss.state     0x10000012        0x1 ./src/I2CInspector.o
+                0x10000012                state
+ .bss.ack       0x10000013        0x1 ./src/I2CInspector.o
+                0x10000013                ack
+ .bss.data_ack  0x10000014        0x1 ./src/I2CInspector.o
+                0x10000014                data_ack
+ .bss.cmd_hl    0x10000015        0x1 ./src/I2CInspector.o
+                0x10000015                cmd_hl
+ .bss.cmd_rw    0x10000016        0x1 ./src/I2CInspector.o
+                0x10000016                cmd_rw
+ *fill*         0x10000017        0x1 
+ .bss.uart_size
+                0x10000018        0x2 ./src/I2CInspector.o
+                0x10000018                uart_size
+ .bss.uart_wp   0x1000001a        0x2 ./src/I2CInspector.o
+                0x1000001a                uart_wp
+ .bss.uart_rp   0x1000001c        0x2 ./src/I2CInspector.o
+                0x1000001c                uart_rp
+ .bss.uart_error
+                0x1000001e        0x1 ./src/I2CInspector.o
+                0x1000001e                uart_error
+ *fill*         0x1000001f        0x1 
+ .bss.flex_int_falling_edge_counter
+                0x10000020       0x20 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x10000020                flex_int_falling_edge_counter
+ .bss.flex_int_counter
+                0x10000040       0x20 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x10000040                flex_int_counter
+ .bss.flex_int_rising_edge_counter
+                0x10000060       0x20 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x10000060                flex_int_rising_edge_counter
+ .bss.flex_int_level_counter
+                0x10000080       0x20 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                0x10000080                flex_int_level_counter
+ .bss.mstidle   0x100000a0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000a0                mstidle
+ .bss.I2CInterruptCount
+                0x100000a4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000a4                I2CInterruptCount
+ .bss.I2CARBLossCount
+                0x100000a8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000a8                I2CARBLossCount
+ .bss.I2CSlvDeselectedCount
+                0x100000ac        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000ac                I2CSlvDeselectedCount
+ .bss.I2CSlvTXCount
+                0x100000b0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000b0                I2CSlvTXCount
+ .bss.I2CMstIdleCount
+                0x100000b4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000b4                I2CMstIdleCount
+ .bss.slvtxrdy  0x100000b8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000b8                slvtxrdy
+ .bss.I2CMstNACKTXCount
+                0x100000bc        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000bc                I2CMstNACKTXCount
+ .bss.RetryCount
+                0x100000c0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000c0                RetryCount
+ .bss.I2CSlvAddrCount
+                0x100000c4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000c4                I2CSlvAddrCount
+ .bss.I2CMstNACKAddrCount
+                0x100000c8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000c8                I2CMstNACKAddrCount
+ .bss.slvrxrdy  0x100000cc        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000cc                slvrxrdy
+ .bss.mstrxrdy  0x100000d0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000d0                mstrxrdy
+ .bss.slvaddrrcvd
+                0x100000d4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000d4                slvaddrrcvd
+ .bss.I2CMstSSErrCount
+                0x100000d8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000d8                I2CMstSSErrCount
+ .bss.I2CSlvNotStrCount
+                0x100000dc        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000dc                I2CSlvNotStrCount
+ .bss.msttxrdy  0x100000e0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000e0                msttxrdy
+ .bss.I2CMstTXCount
+                0x100000e4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000e4                I2CMstTXCount
+ .bss.I2CMstRXCount
+                0x100000e8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000e8                I2CMstRXCount
+ .bss.I2CMonRXCount
+                0x100000ec        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000ec                I2CMonRXCount
+ .bss.I2CSlvRXCount
+                0x100000f0        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x100000f0                I2CSlvRXCount
+ .bss.UARTBlockReceived
+                0x100000f4        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x100000f4                UARTBlockReceived
+ .bss.UARTInterruptCount
+                0x100000f8        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x100000f8                UARTInterruptCount
+ .bss.UARTRxRdyCount
+                0x100000fc        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x100000fc                UARTRxRdyCount
+ .bss.AddrDetected
+                0x10000100        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x10000100                AddrDetected
+ .bss.UARTRxCount
+                0x10000104        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x10000104                UARTRxCount
+ *(COMMON)
+ COMMON         0x10000108      0x217 ./src/I2CInspector.o
+                0x10000108                I2CMonBuffer
+                0x1000010c                uart_data
+                0x1000030c                cmd_data
+                0x1000031c                I2CSlaveRXBuffer
+                0x1000031d                data
+                0x1000031e                I2CSlaveTXBuffer
+ *fill*         0x1000031f        0x1 
+ COMMON         0x10000320        0x4 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                0x10000320                I2CStatus
+ COMMON         0x10000324       0x44 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                0x10000324                UARTRxBuffer
+                0x10000344                UARTStatus
+                0x10000348                UARTTxBuffer
+                0x10000368                . = ALIGN (0x4)
+                0x10000368                _ebss = .
+                0x10000368                PROVIDE (end, .)
+
+.noinit         0x10000368        0x0 load address 0x00000ef0
+                0x10000368                _noinit = .
+ *(.noinit*)
+                0x10000368                . = ALIGN (0x4)
+                0x10000368                _end_noinit = .
+                0x10000368                PROVIDE (_pvHeapStart, DEFINED (__user_heap_base)?__user_heap_base:.)
+                0x10000400                PROVIDE (_vStackTop, DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc1 - 0x0))
+                0xeffff951                PROVIDE (__valid_user_code_checksum, (0x0 - (((_vStackTop + (ResetISR + 0x1)) + (DEFINED (NMI_Handler)?NMI_Handler:M0_NMI_Handler + 0x1)) + (DEFINED (HardFault_Handler)?HardFault_Handler:M0_HardFault_Handler + 0x1))))
+OUTPUT(I2CInspector.axf elf32-littlearm)
+
+.debug_info     0x00000000     0x4092
+ .debug_info    0x00000000     0x15ec ./src/I2CInspector.o
+ .debug_info    0x000015ec      0x230 ./src/cr_startup_lpc8xx.o
+ .debug_info    0x0000181c      0x411 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_info    0x00001c2d      0xd0b /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_info    0x00002938      0xcfb /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_info    0x00003633      0xa5f /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_abbrev   0x00000000      0xc2f
+ .debug_abbrev  0x00000000      0x350 ./src/I2CInspector.o
+ .debug_abbrev  0x00000350       0xe5 ./src/cr_startup_lpc8xx.o
+ .debug_abbrev  0x00000435       0xe3 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_abbrev  0x00000518      0x226 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_abbrev  0x0000073e      0x283 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_abbrev  0x000009c1      0x26e /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_loc      0x00000000     0x11e5
+ .debug_loc     0x00000000      0x1e0 ./src/I2CInspector.o
+ .debug_loc     0x000001e0      0x1a4 ./src/cr_startup_lpc8xx.o
+ .debug_loc     0x00000384       0x73 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_loc     0x000003f7      0x434 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_loc     0x0000082b      0x794 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_loc     0x00000fbf      0x226 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_aranges  0x00000000      0x290
+ .debug_aranges
+                0x00000000       0x68 ./src/I2CInspector.o
+ .debug_aranges
+                0x00000068       0x60 ./src/cr_startup_lpc8xx.o
+ .debug_aranges
+                0x000000c8       0x28 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_aranges
+                0x000000f0       0xc8 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_aranges
+                0x000001b8       0x80 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_aranges
+                0x00000238       0x58 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_ranges   0x00000000      0x308
+ .debug_ranges  0x00000000       0x70 ./src/I2CInspector.o
+ .debug_ranges  0x00000070       0x50 ./src/cr_startup_lpc8xx.o
+ .debug_ranges  0x000000c0       0x18 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_ranges  0x000000d8       0xe8 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_ranges  0x000001c0       0x88 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_ranges  0x00000248       0xc0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_line     0x00000000      0xe11
+ .debug_line    0x00000000      0x325 ./src/I2CInspector.o
+ .debug_line    0x00000325       0xae ./src/cr_startup_lpc8xx.o
+ .debug_line    0x000003d3      0x10e /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_line    0x000004e1      0x302 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_line    0x000007e3      0x38b /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_line    0x00000b6e      0x2a3 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+
+.debug_str      0x00000000     0x1559
+ .debug_str     0x00000000      0x95c ./src/I2CInspector.o
+                                0x9b8 (size before relaxing)
+ .debug_str     0x0000095c      0x141 ./src/cr_startup_lpc8xx.o
+                                0x246 (size before relaxing)
+ .debug_str     0x00000a9d      0x12a /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+                                0x3d3 (size before relaxing)
+ .debug_str     0x00000bc7      0x572 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+                                0x92c (size before relaxing)
+ .debug_str     0x00001139      0x2d0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+                                0x79b (size before relaxing)
+ .debug_str     0x00001409      0x150 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+                                0x7ad (size before relaxing)
+
+.comment        0x00000000       0xe0
+ .comment       0x00000000       0x70 ./src/I2CInspector.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 ./src/cr_startup_lpc8xx.o
+ .comment       0x00000000       0x71 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .comment       0x00000000       0x71 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .comment       0x00000000       0x71 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .comment       0x00000000       0x71 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .comment       0x00000070       0x70 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+                                 0x71 (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x2f
+ .ARM.attributes
+                0x00000000       0x31 ./src/I2CInspector.o
+ .ARM.attributes
+                0x00000031       0x31 ./src/cr_startup_lpc8xx.o
+ .ARM.attributes
+                0x00000062       0x31 /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .ARM.attributes
+                0x00000093       0x31 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .ARM.attributes
+                0x000000c4       0x31 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .ARM.attributes
+                0x000000f5       0x31 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
+ .ARM.attributes
+                0x00000126       0x31 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/libcr_c.a(__weak__main.o)
+ .ARM.attributes
+                0x00000157       0x21 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_32.o)
+ .ARM.attributes
+                0x00000178       0x21 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(division_idiv0.o)
+ .ARM.attributes
+                0x00000199       0x21 /opt/lpcxpresso_8.0.0_526/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/libcr_eabihelpers.a(thumb1_switch_helpers.o)
+
+.debug_frame    0x00000000      0x640
+ .debug_frame   0x00000000      0x110 ./src/I2CInspector.o
+ .debug_frame   0x00000110       0xb0 ./src/cr_startup_lpc8xx.o
+ .debug_frame   0x000001c0       0x3c /home/toyoshim/Work/LPCXpresso/CMSIS_CORE_LPC8xx/Release/libCMSIS_CORE_LPC8xx.a(system_LPC8xx.o)
+ .debug_frame   0x000001fc      0x1f8 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_gpio.o)
+ .debug_frame   0x000003f4      0x16c /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_i2c.o)
+ .debug_frame   0x00000560       0xe0 /home/toyoshim/Work/LPCXpresso/lpc800_driver_lib/Release/liblpc800_driver_lib.a(lpc8xx_uart.o)
