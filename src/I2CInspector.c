@@ -34,7 +34,9 @@
 #include "lpc8xx_i2c.h"
 
 const char kMsgReady[] = "I2CInspector ready\n";
-const char kMsgError[] = "\n*** buffer overflow ***";
+const char kMsgError[] = "\n*** buffer overflow ***\n";
+const char kMsgInvalidCmd[] = "*** invalid command ***\n";
+const char kMsgI2CBusError[] = "*** i2c bus error ***\n";
 
 // I2C decode status.
 enum {
@@ -63,8 +65,8 @@ enum {
     HL_L
 };
 
-#define MAX_UART_SIZE 512
-#define MAX_CMD_SIZE 16
+#define MAX_UART_SIZE 256
+#define MAX_CMD_SIZE 32
 
 // GPIO common constants.
 const uint8_t kBitScl = 2;
@@ -85,34 +87,71 @@ volatile uint16_t address = 0;
 volatile uint8_t rw = RW_R;
 volatile uint8_t ack = NACK;
 volatile uint8_t data;
-volatile uint8_t data_ack = NACK;
 
 volatile uint16_t uart_rp = 0;
 volatile uint16_t uart_wp = 0;
 volatile uint16_t uart_size = 0;
 volatile uint8_t uart_data[MAX_UART_SIZE];
-volatile uint8_t uart_error = 0;
+volatile uint16_t uart_error = 0;
 
 // Declared in wrong size because these are not used.
 volatile uint8_t I2CSlaveTXBuffer[1];
 volatile uint8_t I2CSlaveRXBuffer[1];
-volatile uint32_t I2CMonBuffer[1];
+volatile uint32_t I2CMonBuffer[I2C_MONBUFSIZE];
 
-uint8_t cmd_state = STATE_DECODE_ADDRESS;
-uint8_t cmd_address = 0;
-uint8_t cmd_rw = RW_R;
-uint8_t cmd_data[MAX_CMD_SIZE];
-uint8_t cmd_data_size = 0;
-uint8_t cmd_hl = HL_H;
+volatile uint8_t cmd_data[MAX_CMD_SIZE];
+volatile uint16_t cmd_rp = 0;
+volatile uint16_t cmd_wp = 0;
+volatile uint16_t cmd_pp = 0;
+volatile uint16_t cmd_error = 0;
+
+uint16_t iinc(uint16_t i, uint16_t max) {
+	i++;
+	return (i == max) ? 0 : i;
+}
+
+uint16_t iadd(uint16_t i, uint16_t n, uint16_t max) {
+	i += n;
+	return (i < max) ? i : i - max;
+}
+
+uint16_t isub(uint16_t a, uint16_t b, uint16_t max) {
+	return (a >= b) ? a - b: a + max - b;
+}
+
+int atoi(uint8_t c) {
+    if ('0' <= c && c <= '9')
+        return c - '0';
+    if ('a' <= c && c <= 'f')
+        return c - 'a' + 10;
+    if ('A' <= c && c <= 'F')
+        return c - 'A' + 10;
+    return -1;
+}
+
+void i2c_on() {
+	// Assign I2C to PIO while sending data as a I2C Master.
+	LPC_SWM->PINASSIGN7 = (LPC_SWM->PINASSIGN7 & 0x00ffffffUL) | ((uint32_t)kBitSda << 24);
+	LPC_SWM->PINASSIGN8 = (LPC_SWM->PINASSIGN8 & 0xffffff00UL) | (uint32_t)kBitScl;
+	GPIOSetDir(kPort0, kBitScl, kDirOutput);
+	GPIOSetDir(kPort0, kBitSda, kDirOutput);
+}
+
+void i2c_off() {
+	// Release I2C assigns.
+	GPIOSetDir(kPort0, kBitScl, kDirInput);
+	GPIOSetDir(kPort0, kBitSda, kDirInput);
+	LPC_SWM->PINASSIGN7 |= 0xff000000UL;
+	LPC_SWM->PINASSIGN8 |= 0x000000ffUL;
+}
 
 void uart_putc(int c) {
     if (uart_error || uart_size == MAX_UART_SIZE) {
         uart_error = 1;
         return;
     }
-    uart_data[uart_wp++] = c;
-    if (uart_wp == MAX_UART_SIZE)
-        uart_wp = 0;
+    uart_data[uart_wp] = c;
+    uart_wp = iinc(uart_wp, MAX_UART_SIZE);
     uart_size++;
 }
 
@@ -142,20 +181,92 @@ void uart_write() {
         uint32_t size = (uart_wp < uart_rp) ? (MAX_UART_SIZE - uart_rp) : uart_size;
         UARTSend(LPC_USART0, (uint8_t*)&uart_data[uart_rp], size);
         uart_size -= size;
-        uart_rp += size;
-        if (uart_rp >= MAX_UART_SIZE)
-            uart_rp -= MAX_UART_SIZE;
+        uart_rp = iadd(uart_rp, size, MAX_UART_SIZE);
     }
 }
 
-int atoi(uint8_t c) {
-    if ('0' <= c && c <= '9')
-        return c - '0';
-    if ('a' <= c && c <= 'f')
-        return c - 'a' + 10;
-    if ('A' <= c && c <= 'F')
-        return c - 'A' + 10;
-    return -1;
+// Command format:
+//   3E<4031 : write data 0x40, 0x31 to address 0x3e with /w (7c)
+//   3E>1    : read 1 byte from address 0x3e with r (7d)  // TODO: hasn't tested yet at all.
+void uart_read() {
+	while (cmd_pp != cmd_wp) {
+		if (cmd_data[cmd_pp] == '\n')
+			break;
+		cmd_pp = iinc(cmd_pp, MAX_CMD_SIZE);
+	}
+	// Following check should not be cmd_pp == cmd_wp to avoid a race condition.
+	if (cmd_data[cmd_pp] != '\n')
+		return;
+	uint16_t size = isub(cmd_pp, cmd_rp, MAX_CMD_SIZE);
+	uint8_t done = 0;
+	if (size >= 3) {
+		uint16_t addr = atoi(cmd_data[cmd_rp]) * 16;
+		cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+		addr += atoi(cmd_data[cmd_rp]);
+		cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+		uint8_t rw = cmd_data[cmd_rp];
+		cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+		uint8_t i2c_data[32];
+		uint8_t i2c_size = 0;
+		if (addr < 0) {
+			// invalid address or read/write is specified.
+		} else if (rw == '<') {
+			for (;;) {
+				if (cmd_rp == cmd_pp)
+					break;
+				int hi = atoi(cmd_data[cmd_rp]);
+				cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+				if (cmd_rp == cmd_pp)
+					break;
+				int lo = atoi(cmd_data[cmd_rp]);
+				cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+				if (hi < 0 || lo < 0)
+					break;
+				i2c_data[i2c_size++] = hi * 16 + lo;
+				if (i2c_size == 32)
+					break;
+				if (cmd_rp == cmd_pp) {
+					i2c_on();
+					// Send by myself to avoid unstable stall of I2C_MstSend.
+					LPC_I2C->MSTDAT = addr << 1;
+					LPC_I2C->MSTCTL = CTL_MSTSTART;
+					for (uint16_t i = 0; i < i2c_size; i++) {
+						while (!(LPC_I2C->STAT & STAT_MSTPEND));
+						if((LPC_I2C->STAT & MASTER_STATE_MASK) != STAT_MSTTX) {
+							uart_puts((char*)kMsgI2CBusError);
+							break;
+						}
+						LPC_I2C->MSTDAT = i2c_data[i];
+						LPC_I2C->MSTCTL = CTL_MSTCONTINUE;
+					 }
+					 while (!(LPC_I2C->STAT & STAT_MSTPEND));
+					 if((LPC_I2C->STAT & MASTER_STATE_MASK) != STAT_MSTTX)
+						uart_puts((char*)kMsgI2CBusError);
+					LPC_I2C->MSTCTL = CTL_MSTSTOP | CTL_MSTCONTINUE;
+					I2C_CheckIdle(LPC_I2C);
+					i2c_off();
+					done = 1;
+					break;
+				}
+			}
+		} else if (rw == '>') {
+			if (cmd_rp != cmd_pp) {
+				int i = atoi(cmd_data[cmd_rp]);
+				cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
+				if (cmd_rp == cmd_pp) {
+					i2c_on();
+					// TODO: This probably has the same problem with I2C_MstSend.
+					I2C_MstReceive(LPC_I2C, (addr << 1) | 1, i2c_data, i);
+					i2c_off();
+					done = 1;
+				}
+			}
+		}
+	}
+	if (!done)
+		uart_puts((char*)kMsgInvalidCmd);
+
+	cmd_rp = cmd_pp = iinc(cmd_pp, MAX_CMD_SIZE);
 }
 
 int main () {
@@ -181,8 +292,8 @@ int main () {
     LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 18);
 
     // Enable pseudo open drain on PIO0_2 and PIO0_3. This only affect when these are reconfigured as I2C Master.
-    //LPC_IOCON->PIO0_2 |= (1 << 10);
-    //LPC_IOCON->PIO0_3 |= (1 << 10);
+    LPC_IOCON->PIO0_2 |= (1 << 10);
+    LPC_IOCON->PIO0_3 |= (1 << 10);
 
     // Enable I2C clock.
     LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 5);
@@ -249,17 +360,15 @@ int main () {
     UARTInit(LPC_USART0, 230400);
     UARTSend(LPC_USART0, (uint8_t*)kMsgReady, sizeof(kMsgReady));
 
-    // Change UART interrupt priority to lower than I2C so that we can call I2C functions inside UART IRQ handler.
-    // TODO: Use an async bridge to call on the user thread.
-    *((uint32_t*)0xe000e400) = 1 << 30;
-
-    for (;;)
+    for (;;) {
         uart_write();
+        uart_read();
+    }
     return 0;
 }
 
 void logln () {
-    if (ack == NACK || data_ack == NACK)
+    if (ack == NACK)
         uart_putc('!');
     uart_putc('\n');
 }
@@ -305,7 +414,6 @@ void SCT_IRQHandler () {
                 count = 0;
             } else {
                 count = 0;
-                data_ack = ACK;
                 state = STATE_DECODE_DATA;
                 uart_putc((rw == RW_R) ? '>' : '<');
             }
@@ -322,7 +430,6 @@ void SCT_IRQHandler () {
         case STATE_DECODE_10BIT_ADDRESS_ACK:
             ack = bit ? NACK : ACK;
             count = 0;
-            data_ack = ACK;
             state = STATE_DECODE_DATA;
             uart_putc((rw == RW_R) ? '>' : '<');
             break;
@@ -337,7 +444,7 @@ void SCT_IRQHandler () {
             break;
         case STATE_DECODE_DATA_ACK:
             if (bit)
-                data_ack = NACK;
+                ack = NACK;
             count = 0;
             state = STATE_DECODE_DATA;
             break;
@@ -345,62 +452,17 @@ void SCT_IRQHandler () {
     }
 }
 
-// Command format:
-//   3E<4031 : write data 0x40, 0x31 to address 0x3e with /w (7c)
-//   3E>1    : read 1 byte from address 0x3e with r (7d)  // TODO: hasn't tested yet at all.
-// Note:
-//   Next command won't be accepted until previous command is shown in the monitor output.
 void UARTCustom_IRQHandler () {
     if (LPC_USART0->STAT & RXRDY) {
+    	uint8_t rxdata = LPC_USART0->RXDATA;
         LPC_USART0->STAT = RXRDY;
-        uint8_t data = LPC_USART0->RXDATA;
-        if (cmd_state == STATE_DECODE_ADDRESS) {
-            if (data == '<') {
-                cmd_rw = RW_W;
-                cmd_data_size = 0;
-                cmd_state = STATE_DECODE_DATA;
-            } else if (data == '>') {
-                cmd_rw = RW_R;
-                cmd_data_size = 0;
-                cmd_state = STATE_DECODE_DATA;
-            } else {
-                cmd_address <<= 4;
-                cmd_address |= atoi(data);
-            }
-        } else if (cmd_state == STATE_DECODE_DATA) {
-            if (data == '\n' || data == ';') {
-                // Assign I2C to PIO while sending data as a I2C Master.
-                LPC_SWM->PINASSIGN7 = (LPC_SWM->PINASSIGN7 & 0x00ffffffUL) | ((uint32_t)kBitSda << 24);
-                LPC_SWM->PINASSIGN8 = (LPC_SWM->PINASSIGN8 & 0xffffff00UL) | (uint32_t)kBitScl;
-                GPIOSetDir(kPort0, kBitScl, kDirOutput);
-                GPIOSetDir(kPort0, kBitSda, kDirOutput);
-
-                if (cmd_rw == RW_W)
-                    I2C_MstSend(LPC_I2C, cmd_address << 1, cmd_data, cmd_data_size);
-                else
-                    I2C_MstReceive(LPC_I2C, (cmd_address << 1) | 1, cmd_data, cmd_data[0]);
-
-                // Release I2C assigns.
-                GPIOSetDir(kPort0, kBitScl, kDirInput);
-                GPIOSetDir(kPort0, kBitSda, kDirInput);
-                LPC_SWM->PINASSIGN7 |= 0xff000000UL;
-                LPC_SWM->PINASSIGN8 |= 0x000000ffUL;
-
-                cmd_address = 0;
-                cmd_hl = HL_H;
-                cmd_data_size = 0;
-                cmd_state = STATE_DECODE_ADDRESS;
-            } else if (cmd_data_size < MAX_CMD_SIZE) {
-                if (cmd_hl == HL_H) {
-                    cmd_data[cmd_data_size] = atoi(data) << 4;
-                    cmd_hl = HL_L;
-                } else {
-                    cmd_data[cmd_data_size] |= atoi(data);
-                    cmd_hl = HL_H;
-                    cmd_data_size++;
-                }
-            }
+        uint16_t next = iinc(cmd_wp, MAX_CMD_SIZE);
+        if (next == cmd_rp) {
+        	cmd_error = 1;
+        	return;
         }
+        cmd_data[cmd_wp] = rxdata;
+        cmd_wp = next;
     }
     UART0_IRQHandler();
 }
