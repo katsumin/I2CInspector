@@ -39,3 +39,21 @@ The first hex ``3E`` means the target address. Following ``<`` means that this i
 Also you can send I2C transactions as a master. But note that it does not care about multi-master systems. You yorself should be careful about sending transaction not being conflicted with other existing masters.
 
 To write, you can just send the same format data through the USART RX. To read, you can send a read byte length after the ``>``. It would be something like ``3E>2`` to read 2 Bytes from a device having address 0x3E.
+
+## Write to I2C device from PC through I2CInspector
+You can send I2C write command from your PC through the I2CInspector connected via USB Serial. Here is a rough sketch for POSIX systems though it does not have something great for error checks.
+
+```
+#define USB_SERIAL "/dev/ttyUSB0"
+const char kCommand[] = "3E<4032\n";
+int fd = open(USB_SERIAL, O_RDWR);
+...
+struct termios termios;
+tcgetattr(fd, &termios) || cfsetspeed(&termios, 230400) || tcsetattr(fd, TCSANOW, &termios);
+write(fd, kCommand, sizeof(kCommand) - 1);  // Do not send the last NULL!
+ssize_t done = 0;
+char data[8];
+while (done != (sizeof(kCommand) - 1))
+  done += read(fd, data, 8);
+```
+
