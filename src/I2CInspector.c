@@ -69,8 +69,10 @@ enum {
 #define MAX_CMD_SIZE 32
 
 // GPIO common constants.
+const uint8_t kBitRx = 0;
 const uint8_t kBitScl = 2;
 const uint8_t kBitSda = 3;
+const uint8_t kBitTx = 4;
 const uint8_t kBitLed = 5;
 const uint8_t kDirInput = 0;
 const uint8_t kDirOutput = 1;
@@ -270,7 +272,10 @@ void uart_read() {
 }
 
 int main () {
-    // Disable Serial Wire Debug and Reset, then enable PIO0_2, PIO0_3, and PIO0_5.
+	// Enable Clocks we need, IOCON, I2C, SCTimer, and UART0.
+    LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 18) | (1 << 5) | (1 << 8) | (1 << 14);
+
+	// Disable Serial Wire Debug and Reset, then enable PIO0_2, PIO0_3, and PIO0_5.
 #if USE_LED
     LPC_SWM->PINENABLE0 |= (3 << 2) | (1 << 6);
 #else
@@ -288,15 +293,9 @@ int main () {
     GPIOSetBitValue(kPort0, kBitLed, 1);
 #endif
 
-    // Enable IOCON clock.
-    LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 18);
-
     // Enable pseudo open drain on PIO0_2 and PIO0_3. This only affect when these are reconfigured as I2C Master.
     LPC_IOCON->PIO0_2 |= (1 << 10);
     LPC_IOCON->PIO0_3 |= (1 << 10);
-
-    // Enable I2C clock.
-    LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 5);
 
     // Reset I2C.
     LPC_SYSCON->PRESETCTRL &= ~(1 << 6);
@@ -310,9 +309,6 @@ int main () {
 
     // Assign SDA to CTIN_1.
     LPC_SWM->PINASSIGN6 = 0xffffff00UL | (uint32_t)kBitSda;
-
-    // Enable SCTimer clock.
-    LPC_SYSCON->SYSAHBCLKCTRL |= (1 << 8);
 
     // Reset SCTimer.
     LPC_SYSCON->PRESETCTRL &= ~(1 << 8);
@@ -357,6 +353,7 @@ int main () {
     NVIC->ISER[0] = (1 << 9);
 
     // Initialize USART and say Hello.
+	LPC_SWM->PINASSIGN0 = 0xffff0000UL | (kBitTx << 0) | (kBitRx << 8);
     UARTInit(LPC_USART0, 230400);
     UARTSend(LPC_USART0, (uint8_t*)kMsgReady, sizeof(kMsgReady));
 
