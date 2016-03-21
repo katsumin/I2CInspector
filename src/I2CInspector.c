@@ -134,14 +134,10 @@ void i2c_on() {
     // Assign I2C to PIO while sending data as a I2C Master.
     LPC_SWM->PINASSIGN7 = (LPC_SWM->PINASSIGN7 & 0x00ffffffUL) | ((uint32_t)kBitSda << 24);
     LPC_SWM->PINASSIGN8 = (LPC_SWM->PINASSIGN8 & 0xffffff00UL) | (uint32_t)kBitScl;
-    GPIOSetDir(kPort0, kBitScl, kDirOutput);
-    GPIOSetDir(kPort0, kBitSda, kDirOutput);
 }
 
 void i2c_off() {
     // Release I2C assigns.
-    GPIOSetDir(kPort0, kBitScl, kDirInput);
-    GPIOSetDir(kPort0, kBitSda, kDirInput);
     LPC_SWM->PINASSIGN7 |= 0xff000000UL;
     LPC_SWM->PINASSIGN8 |= 0x000000ffUL;
 }
