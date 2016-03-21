@@ -288,9 +288,9 @@ int main () {
     GPIOSetBitValue(kPort0, kBitLed, 1);
 #endif
 
-    // Enable pseudo open drain on PIO0_2 and PIO0_3. This only affect when these are reconfigured as I2C Master.
-    LPC_IOCON->PIO0_2 |= (1 << 10);
-    LPC_IOCON->PIO0_3 |= (1 << 10);
+    // Set PIO0_2 and PIO0_3 as pseudo open drain with neither pulldown or pullup.
+    LPC_IOCON->PIO0_2 = (1 << 10);
+    LPC_IOCON->PIO0_3 = (1 << 10);
 
     // Reset I2C.
     LPC_SYSCON->PRESETCTRL &= ~(1 << 6);
