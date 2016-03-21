@@ -293,7 +293,7 @@ int main () {
     LPC_SYSCON->PRESETCTRL |= (1 << 6);
 
     // Configured as I2C Master running at 100KHz, but not assigned here.
-    I2C_MstInit(LPC_I2C, I2C_SMODE_PRE_DIV, CFG_MSTENA, 0);
+    I2C_MstInit(LPC_I2C, 12000000 / 100000 / 2 - 1, CFG_MSTENA, 0);
 
     // Assign SCL to CTIN_0.
     LPC_SWM->PINASSIGN5 = 0x00ffffffUL | ((uint32_t)kBitScl << 24);
