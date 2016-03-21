@@ -35,7 +35,7 @@
 
 const char kMsgReady[] = "I2CInspector ready\n";
 const char kMsgError[] = "\n*** buffer overflow ***\n";
-const char kMsgInvalidCmd[] = "*** invalid command ***\n";
+const char kMsgInvalidCmd[] = "\n*** invalid command ***\n";
 
 // I2C decode status.
 enum {
@@ -98,7 +98,8 @@ volatile uint16_t uart_error = 0;
 // Declared in wrong size because these are not used.
 volatile uint8_t I2CSlaveTXBuffer[1];
 volatile uint8_t I2CSlaveRXBuffer[1];
-volatile uint32_t I2CMonBuffer[I2C_MONBUFSIZE];
+volatile uint32_t I2CMonBuffer[1];
+volatile uint16_t i2c_master = 0;
 
 volatile uint8_t cmd_data[MAX_CMD_SIZE];
 volatile uint16_t cmd_rp = 0;
@@ -134,12 +135,14 @@ void i2c_on() {
     // Assign I2C to PIO while sending data as a I2C Master.
     LPC_SWM->PINASSIGN7 = (LPC_SWM->PINASSIGN7 & 0x00ffffffUL) | ((uint32_t)kBitSda << 24);
     LPC_SWM->PINASSIGN8 = (LPC_SWM->PINASSIGN8 & 0xffffff00UL) | (uint32_t)kBitScl;
+    i2c_master = 1;
 }
 
 void i2c_off() {
     // Release I2C assigns.
     LPC_SWM->PINASSIGN7 |= 0xff000000UL;
     LPC_SWM->PINASSIGN8 |= 0x000000ffUL;
+    i2c_master = 0;
 }
 
 void uart_putc(int c) {
@@ -239,6 +242,7 @@ void uart_read() {
                     I2C_CheckIdle(LPC_I2C);
                     i2c_off();
                     done = 1;
+                    uart_putc('\n');
                     break;
                 }
             }
@@ -252,6 +256,7 @@ void uart_read() {
                     I2C_MstReceive(LPC_I2C, (addr << 1) | 1, i2c_data, i);
                     i2c_off();
                     done = 1;
+                    uart_putc('\n');
                 }
             }
         }
@@ -365,6 +370,8 @@ void SCT_IRQHandler () {
     if(LPC_SCT->EVFLAG & kEvent2) {
         // Start
         LPC_SCT->EVFLAG = kEvent2;
+        if (i2c_master)
+            return;
         if (state != STATE_WAIT_START)
             logln();
         state = STATE_DECODE_ADDRESS;
@@ -373,11 +380,15 @@ void SCT_IRQHandler () {
     } else if (LPC_SCT->EVFLAG & kEvent3) {
         // Stop
         LPC_SCT->EVFLAG = kEvent3;
+        if (i2c_master)
+            return;
         logln();
         state = STATE_WAIT_START;
     } else if (LPC_SCT->EVFLAG & kEvent4) {
         // Clock
         LPC_SCT->EVFLAG = kEvent4;
+        if (i2c_master)
+            return;
         uint32_t bit = GPIOGetPinValue(kPort0, kBitSda);
         switch (state) {
         case STATE_DECODE_ADDRESS:
@@ -449,6 +460,10 @@ void UARTCustom_IRQHandler () {
             cmd_error = 1;
             return;
         }
+
+        // Echo input characters, but '\n' will done after the request is handled.
+        if (rxdata != '\n')
+            uart_putc(rxdata);
         cmd_data[cmd_wp] = rxdata;
         cmd_wp = next;
     }
