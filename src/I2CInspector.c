@@ -36,7 +36,6 @@
 const char kMsgReady[] = "I2CInspector ready\n";
 const char kMsgError[] = "\n*** buffer overflow ***\n";
 const char kMsgInvalidCmd[] = "*** invalid command ***\n";
-const char kMsgI2CBusError[] = "*** i2c bus error ***\n";
 
 // I2C decode status.
 enum {
@@ -234,16 +233,12 @@ void uart_read() {
                     LPC_I2C->MSTCTL = CTL_MSTSTART;
                     for (uint16_t i = 0; i < i2c_size; i++) {
                         while (!(LPC_I2C->STAT & STAT_MSTPEND));
-                        if((LPC_I2C->STAT & MASTER_STATE_MASK) != STAT_MSTTX) {
-                            uart_puts((char*)kMsgI2CBusError);
+                        if((LPC_I2C->STAT & MASTER_STATE_MASK) != STAT_MSTTX)
                             break;
-                        }
                         LPC_I2C->MSTDAT = i2c_data[i];
                         LPC_I2C->MSTCTL = CTL_MSTCONTINUE;
                      }
                      while (!(LPC_I2C->STAT & STAT_MSTPEND));
-                     if((LPC_I2C->STAT & MASTER_STATE_MASK) != STAT_MSTTX)
-                        uart_puts((char*)kMsgI2CBusError);
                     LPC_I2C->MSTCTL = CTL_MSTSTOP | CTL_MSTCONTINUE;
                     I2C_CheckIdle(LPC_I2C);
                     i2c_off();
