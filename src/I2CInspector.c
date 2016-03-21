@@ -95,17 +95,17 @@ volatile uint16_t uart_size = 0;
 volatile uint8_t uart_data[MAX_UART_SIZE];
 volatile uint16_t uart_error = 0;
 
-// Declared in wrong size because these are not used.
-volatile uint8_t I2CSlaveTXBuffer[1];
-volatile uint8_t I2CSlaveRXBuffer[1];
-volatile uint32_t I2CMonBuffer[1];
-volatile uint16_t i2c_master = 0;
-
 volatile uint8_t cmd_data[MAX_CMD_SIZE];
 volatile uint16_t cmd_rp = 0;
 volatile uint16_t cmd_wp = 0;
 volatile uint16_t cmd_pp = 0;
 volatile uint16_t cmd_error = 0;
+
+// Declared in wrong size because these are not used.
+volatile uint8_t I2CSlaveTXBuffer[1];
+volatile uint8_t I2CSlaveRXBuffer[1];
+volatile uint32_t I2CMonBuffer[1];
+volatile uint16_t i2c_master = 0;
 
 uint16_t iinc(uint16_t i, uint16_t max) {
     i++;
@@ -200,14 +200,14 @@ void uart_read() {
     uint16_t size = isub(cmd_pp, cmd_rp, MAX_CMD_SIZE);
     uint8_t done = 0;
     if (size >= 3) {
-        uint16_t addr = atoi(cmd_data[cmd_rp]) * 16;
+        int addr = atoi(cmd_data[cmd_rp]) * 16;
         cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
         addr += atoi(cmd_data[cmd_rp]);
         cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
         uint8_t rw = cmd_data[cmd_rp];
         cmd_rp = iinc(cmd_rp, MAX_CMD_SIZE);
         uint8_t i2c_data[32];
-        uint8_t i2c_size = 0;
+        uint16_t i2c_size = 0;
         if (addr < 0) {
             // invalid address or read/write is specified.
         } else if (rw == '<') {
@@ -236,16 +236,17 @@ void uart_read() {
                             break;
                         LPC_I2C->MSTDAT = i2c_data[i];
                         LPC_I2C->MSTCTL = CTL_MSTCONTINUE;
-                     }
-                     while (!(LPC_I2C->STAT & STAT_MSTPEND));
+                    }
+                    if((LPC_I2C->STAT & MASTER_STATE_MASK) == STAT_MSTTX)
+                        while (!(LPC_I2C->STAT & STAT_MSTPEND));
                     LPC_I2C->MSTCTL = CTL_MSTSTOP | CTL_MSTCONTINUE;
-                    I2C_CheckIdle(LPC_I2C);
+                    while ((LPC_I2C->STAT & (STAT_MSTPEND|MASTER_STATE_MASK)) != (STAT_MSTPEND|STAT_MSTIDLE));
                     i2c_off();
                     done = 1;
-                    uart_putc('\n');
                     break;
                 }
             }
+            uart_putc('\n');
         } else if (rw == '>') {
             if (cmd_rp != cmd_pp) {
                 int i = atoi(cmd_data[cmd_rp]);
@@ -298,7 +299,10 @@ int main () {
     LPC_SYSCON->PRESETCTRL |= (1 << 6);
 
     // Configured as I2C Master running at 100KHz, but not assigned here.
-    I2C_MstInit(LPC_I2C, 12000000 / 100000 / 2 - 1, CFG_MSTENA, 0);
+    I2C_MstInit(LPC_I2C, 12000000 / 100000 / 4 - 1, CFG_MSTENA, 0);
+
+    // But disable interrupts so to send manually.
+    NVIC_DisableIRQ(I2C_IRQn);
 
     // Assign SCL to CTIN_0.
     LPC_SWM->PINASSIGN5 = 0x00ffffffUL | ((uint32_t)kBitScl << 24);
@@ -466,6 +470,7 @@ void UARTCustom_IRQHandler () {
             uart_putc(rxdata);
         cmd_data[cmd_wp] = rxdata;
         cmd_wp = next;
+    } else {
+        UART0_IRQHandler();
     }
-    UART0_IRQHandler();
 }
